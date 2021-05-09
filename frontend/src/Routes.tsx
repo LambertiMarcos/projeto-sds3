@@ -10,7 +10,7 @@ const Routes = () => {
                     <Home />
                 </Route>
 
-                <Route path="/dasboard">
+                <Route path="/dashboard">
                     <Dashboard />
                 </Route>
 
