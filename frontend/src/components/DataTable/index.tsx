@@ -6,25 +6,27 @@ import { formatLocalDate } from "utils/format";
 import { BASE_URL } from "utils/requests";
 
 const DataTable = () => {
-    const [activePage, setActivePage] useStage(0);
+    const [activePage, setActivePage] = useState(0);
+
     const [page, setPage] = useState<SalePage>({
         first: true,
         last: true,
         number: 0,
         totalElements: 0,
-        total|Pages:0
+        totalPages: 0
     });
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/sales?page=${activePage}&size=10&sort=date,desc`)
+        axios.get(`${BASE_URL}/sales?page=${ activePage }&size=10&sort=date,desc`)
             .then(response => {
-                setPage(response.data)
-            })
+                setPage(response.data);
+            });
     },[activePage]);
 
-    const changePage = (index: number) => {
-        setActivePage(index);
+    const changPage = (index: number) => {
+    setActivePage(index)
     }
+
 
     return (
         <>
@@ -42,7 +44,7 @@ const DataTable = () => {
                     </thead>
                     <tbody>
                         {page.content?.map(item => (
-                            <tr Key={item.id}>
+                            <tr key={item.id}>
                                 <td>{formatLocalDate(item.date, "dd/MM/yyyy")}</td>
                                 <td>{item.seller.name}</td>
                                 <td>{item.visited}</td>
@@ -60,7 +62,7 @@ const DataTable = () => {
 }
 
 export default DataTable;
-
+/*
 function setPage(data: any) {
     throw new Error("Function not implemented.");
 }
@@ -68,3 +70,4 @@ function setActivePage(index: number) {
     throw new Error("Function not implemented.");
 }
 
+*/
